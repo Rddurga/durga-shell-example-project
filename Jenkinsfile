@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout your project from the repository
-                git 'https://your-repository-url.git'
+                git 'https://github.com/Rddurga/durga-shell-example-project//.git'
             }
         }
         
