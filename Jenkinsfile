@@ -4,37 +4,36 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout code from Git repository
-                git 'https://your-repo-url.git'
+                // Checkout your project from the repository
+                git 'https://your-repository-url.git'
             }
         }
         
-        stage('Build') {
+        stage('Compile') {
             steps {
-                // Simulating a build step for an HTML project (usually no build in HTML, but could be for preprocessing)
-                echo 'Building HTML project...'
+                script {
+                    // Compile the Java program
+                    sh 'javac HelloWorld.java'
+                }
             }
         }
         
-        stage('Test') {
+        stage('Run') {
             steps {
-                // Here, we could simulate running a test (like checking if the HTML file is valid)
-                echo 'Running tests...'
-                sh 'echo "Test passed!"'  // This is just a simulation
-            }
-        }
-        
-        stage('Deploy') {
-            steps {
-                // Simulating deployment of the HTML project (e.g., copying files to a server)
-                echo 'Deploying HTML project...'
+                script {
+                    // Run the Java program
+                    sh 'java HelloWorld'
+                }
             }
         }
     }
     
     post {
-        always {
-            echo 'Pipeline finished.'
+        success {
+            echo 'Pipeline executed successfully.'
+        }
+        failure {
+            echo 'Pipeline failed.'
         }
     }
 }
